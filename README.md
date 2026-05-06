@@ -15,6 +15,7 @@ Users can register an account, log in, add semesters, add courses, input credit 
 ## Main Features
 
 - User registration and login with Firebase Authentication
+- Persistent login session
 - Cloud-based academic data storage using Cloud Firestore
 - Add and manage semester data
 - Add and manage course data
@@ -69,14 +70,15 @@ This application is useful for:
 
 1. Open the application.
 2. Register a new account or log in with an existing account.
-3. Go to the Semester page.
-4. Add a new semester.
-5. Open the selected semester.
-6. Add courses with credit units and grades.
-7. View the calculated IPS for each semester.
-8. View cumulative IPK and academic summary on the dashboard.
-9. Check academic statistics and profile information.
-10. Change the profile photo from the profile page.
+3. If the user has logged in before and has not logged out, the application will open the home page automatically.
+4. Go to the Semester page.
+5. Add a new semester.
+6. Open the selected semester.
+7. Add courses with credit units and grades.
+8. View the calculated IPS for each semester.
+9. View cumulative IPK and academic summary on the dashboard.
+10. Check academic statistics and profile information.
+11. Change the profile photo from the profile page.
 
 ## Project Structure
 
@@ -106,6 +108,14 @@ This project uses the following Firebase services:
 - Firebase Authentication for user registration and login
 - Cloud Firestore for storing user, semester, course, and profile data
 
+## Persistent Login Session
+
+The application now supports a persistent login session. This means users do not need to log in again every time they reopen the application, as long as they have not logged out.
+
+For the web platform, Firebase Authentication is configured with local persistence. This allows the login session to remain stored in the browser. When the application starts, the splash screen checks the current authentication state. If an active user session is found, the application redirects the user to the home page. If no active session is found, the user is redirected to the login page.
+
+This feature improves user experience because users can continue using the application without repeating the login process every time.
+
 ## Database-Based Profile Photo Feature
 
 The profile photo feature is designed to work without Firebase Storage. Since this project uses the Firebase Spark Plan, the profile photo is stored directly in Cloud Firestore as Base64 data.
@@ -122,11 +132,10 @@ This approach prevents old profile photos from accumulating in the database.
 
 ## Current Development Status
 
-The current version supports the core academic data management features, including user authentication, semester management, course management, IPS calculation, IPK calculation, dashboard summary, profile page, basic statistics, and the foundation for a database-based profile photo feature.
+The current version supports the core academic data management features, including user authentication, persistent login session, semester management, course management, IPS calculation, IPK calculation, dashboard summary, profile page, basic statistics, and the foundation for a database-based profile photo feature.
 
 Planned future improvements include:
 
-- Persistent login session
 - Manual profile photo crop before saving
 - Improved splash screen animation
 - More polished UI and micro-interactions
@@ -141,17 +150,33 @@ Planned future improvements include:
 
 ## Recent Update
 
-### ID
+### Update 1
+
+#### ID
 
 Pada pembaruan ini, project mulai menambahkan dasar fitur foto profil berbasis database. Fitur ini dirancang agar pengguna dapat mengganti foto profil tanpa menggunakan Firebase Storage. Karena project masih menggunakan Firebase Spark Plan, penyimpanan foto dilakukan melalui Cloud Firestore dalam bentuk Base64.
 
 Ketika pengguna memilih foto baru, sistem akan mengompres gambar, mengubahnya menjadi Base64, lalu menyimpannya pada dokumen pengguna di koleksi `users`. Apabila pengguna mengganti foto profil, data foto lama di database akan dihapus terlebih dahulu dan diganti dengan data foto yang baru. Dengan pendekatan ini, foto lama tidak menumpuk di database.
 
-### EN
+#### EN
 
 In this update, the project started adding the foundation for a database-based profile photo feature. This feature is designed to allow users to change their profile photo without using Firebase Storage. Since the project is still using the Firebase Spark Plan, the profile photo is stored in Cloud Firestore as Base64 data.
 
 When the user selects a new photo, the system compresses the image, converts it into Base64, and stores it in the user document inside the `users` collection. If the user changes the profile photo, the old photo data in the database is deleted first and replaced with the new photo data. With this approach, old profile photos do not accumulate in the database.
+
+### Update 2
+
+#### ID
+
+Pada pembaruan ini, project menambahkan fitur persistent login session. Fitur ini membuat pengguna tidak perlu login ulang setiap kali aplikasi dibuka selama pengguna belum melakukan logout.
+
+Pada platform web, Firebase Authentication disetel menggunakan local persistence agar sesi login tetap tersimpan di browser. Saat aplikasi dijalankan, splash screen akan memeriksa status login pengguna. Jika sesi login masih aktif, pengguna langsung diarahkan ke halaman utama. Jika tidak ada sesi login aktif, pengguna akan diarahkan ke halaman login.
+
+#### EN
+
+In this update, the project added a persistent login session feature. This feature allows users to stay logged in when reopening the application, as long as they have not logged out.
+
+On the web platform, Firebase Authentication is configured using local persistence so the login session remains stored in the browser. When the application starts, the splash screen checks the user's authentication state. If an active login session exists, the user is redirected directly to the home page. If no active session exists, the user is redirected to the login page.
 
 ## Installation and Setup
 
@@ -198,6 +223,8 @@ This project uses Firebase. To run the application properly, Firebase configurat
 Make sure Firebase Authentication and Cloud Firestore are enabled in Firebase Console before running the application.
 
 This project does not use Firebase Storage for profile photos. Profile photos are stored in Cloud Firestore as compressed Base64 data for academic and demonstration purposes.
+
+The persistent login session will remain active as long as the user does not log out, the browser data is not cleared, and the authentication session is still valid.
 
 ## Developer
 
