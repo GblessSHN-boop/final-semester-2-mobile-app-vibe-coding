@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "681550113873",
+    "project_id": "gland-shn",
+    "storage_bucket": "gland-shn.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681550113873:android:01c2248e45b7bc74d29c70",
+        "android_client_info": {
+          "package_name": "com.example.kalkulator_ipk_ips"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCSsJilZj6yGN1DeGya6ZqFRMazFLboJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681550113873:android:aec75faa68baba9dd29c70",
+        "android_client_info": {
+          "package_name": "com.example.login_page_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCSsJilZj6yGN1DeGya6ZqFRMazFLboJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
